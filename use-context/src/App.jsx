@@ -7,7 +7,6 @@ function App() {
     return (
         <ThemeProvider>
             <FunctionContextComponent />
-            {/* <ClassContextComponent /> */}
         </ThemeProvider>
     );
 }
