@@ -14,7 +14,7 @@ function App() {
     function decrementCount() {
         // setCount(count - 1);
         // Above way of using is not a proper way of using 'set' for useState()
-        setCount((previousCount) => previousCount - 1);
+        // setCount((previousCount) => previousCount - 1);
     }
     function incrementCount() {
         setCount((previousCount) => previousCount + 1);
