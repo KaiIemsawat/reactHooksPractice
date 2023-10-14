@@ -19,6 +19,7 @@ function App() {
     };
     useEffect(() => {
         window.addEventListener("resize", handleResize);
+        // Add return with 'removeEventListener()' to remount the event -- (clean up)
         return () => {
             window.removeEventListener("resize", handleResize);
         };
