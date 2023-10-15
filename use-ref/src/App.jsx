@@ -6,6 +6,9 @@ function App() {
 
     useEffect(() => {
         prevName.current = name;
+        // prevName which is useRef("") is an object that would have only 'current' proerty
+        // In this case -> {current : ""} since it was assign empty string in -> const prevName = useRef("");
+        console.log(prevName);
     }, [name]);
 
     return (
