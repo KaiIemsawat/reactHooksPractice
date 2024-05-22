@@ -5,8 +5,8 @@ const FunctionContextCompontnent = () => {
     const toggleTheme = useThemeUpdate();
 
     const themeStyles = {
-        backgroundColor: darkTheme ? "#322a3b" : "#e8e2ca",
-        color: darkTheme ? "#e8e2ca" : "#322a3b",
+        backgroundColor: darkTheme ? "#312136" : "#f8eee2",
+        color: darkTheme ? "#f8eee2" : "#312136",
         padding: "2rem",
         margin: "2rem",
     };
