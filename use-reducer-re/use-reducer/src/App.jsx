@@ -1,40 +1,42 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
 const ACTIONS = {
-    INCREMENT: "increment",
-    DECREMENT: "decrement",
+    ADD_TODO: "add-todo",
 };
 
-const reducer = (state, action) => {
-    // 'state' -> current state where the application is currently at
-    // 'action' -> will be passed to 'dispatch'
-    // 'reducer' will return the new updated state
+const reducer = (todos, action) => {
     switch (action.type) {
-        case ACTIONS.INCREMENT:
-            return { count: state.count + 1 };
-        case ACTIONS.DECREMENT:
-            return { count: state.count - 1 };
-        default:
-            return state;
+        case ACTIONS.ADD_TODO:
+            return [...todos, newTodo(action.payload.name)];
     }
 };
 
+const newTodo = (name) => {
+    return { id: Date.now(), name, complete: false };
+};
+
 function App() {
-    const [state, dispatch] = useReducer(reducer, { count: 0 });
+    const [name, setName] = useState("");
+    const [todos, dispatch] = useReducer(reducer, []);
     // Note : 'dispatch' will call 'action' from reducer
 
-    const increment = () => {
-        dispatch({ type: ACTIONS.INCREMENT });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch({ type: ACTIONS.ADD_TODO, payload: { name } });
+        setName("");
     };
 
-    const decrement = () => {
-        dispatch({ type: ACTIONS.DECREMENT });
-    };
+    console.log(todos);
+
     return (
         <>
-            <button onClick={decrement}>-</button>
-            <span>{state.count}</span>
-            <button onClick={increment}>+</button>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+            </form>
         </>
     );
 }
