@@ -1,14 +1,18 @@
 import { useReducer } from "react";
-import { useState } from "react";
+
+const ACTIONS = {
+    INCREMENT: "increment",
+    DECREMENT: "decrement",
+};
 
 const reducer = (state, action) => {
     // 'state' -> current state where the application is currently at
     // 'action' -> will be passed to 'dispatch'
     // 'reducer' will return the new updated state
     switch (action.type) {
-        case "increment":
+        case ACTIONS.INCREMENT:
             return { count: state.count + 1 };
-        case "decrement":
+        case ACTIONS.DECREMENT:
             return { count: state.count - 1 };
         default:
             return state;
@@ -20,11 +24,11 @@ function App() {
     // Note : 'dispatch' will call 'action' from reducer
 
     const increment = () => {
-        dispatch({ type: "increment" });
+        dispatch({ type: ACTIONS.INCREMENT });
     };
 
     const decrement = () => {
-        dispatch({ type: "decrement" });
+        dispatch({ type: ACTIONS.DECREMENT });
     };
     return (
         <>
