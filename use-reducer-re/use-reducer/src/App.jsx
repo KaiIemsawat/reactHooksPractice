@@ -1,20 +1,35 @@
 import { useReducer } from "react";
 import { useState } from "react";
 
+const reducer = (state, action) => {
+    // 'state' -> current state where the application is currently at
+    // 'action' -> will be passed to 'dispatch'
+    // 'reducer' will return the new updated state
+    switch (action.type) {
+        case "increment":
+            return { count: state.count + 1 };
+        case "decrement":
+            return { count: state.count - 1 };
+        default:
+            return state;
+    }
+};
+
 function App() {
-    const [count, setCount] = useState(0);
+    const [state, dispatch] = useReducer(reducer, { count: 0 });
+    // Note : 'dispatch' will call 'action' from reducer
 
     const increment = () => {
-        setCount((prevCount) => prevCount + 1);
+        dispatch({ type: "increment" });
     };
 
     const decrement = () => {
-        setCount((prevCount) => prevCount - 1);
+        dispatch({ type: "decrement" });
     };
     return (
         <>
             <button onClick={decrement}>-</button>
-            <span>{count}</span>
+            <span>{state.count}</span>
             <button onClick={increment}>+</button>
         </>
     );
